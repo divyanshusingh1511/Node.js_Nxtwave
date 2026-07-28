@@ -1,0 +1,31 @@
+### Get all players
+GET http://localhost:3000/players/
+
+###
+
+### Add a new player
+POST http://localhost:3000/players/
+Content-Type: application/json
+
+{
+  "playerName": "Vishal",
+  "jerseyNumber": 17,
+  "role": "Bowler"
+}
+###
+
+### API 3
+GET http://localhost:3000/players/1/
+
+### API 4
+PUT http://localhost:3000/players/1/
+Content-Type: application/json
+
+{
+  "playerName": "Virat Kohli",
+  "jerseyNumber": 18,
+  "role": "Batsman"
+}
+
+### API - 5
+DELETE http://localhost:3000/players/1/
