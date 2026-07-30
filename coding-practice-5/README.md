@@ -1,60 +1,74 @@
-# Movies
+# Movies Management REST API
 
-Given two files `app.js` and a database file `moviesData.db` consisting of two tables `movie` and `director`.
+A backend REST API built using **Node.js**, **Express.js**, and **SQLite** to manage movies and directors. The application performs CRUD operations on movie records and provides APIs to retrieve director information and the movies directed by them.
 
-Write APIs to perform CRUD operations on the tables `movie`, `director` containing the following columns,
+## Tech Stack
 
-**Movie Table**
+* Node.js
+* Express.js
+* SQLite
+* JavaScript
 
-| Columns     | Type    |
+## Database Schema
+
+### Movie Table
+
+| Column      | Type    |
 | ----------- | ------- |
 | movie_id    | INTEGER |
 | director_id | INTEGER |
 | movie_name  | TEXT    |
 | lead_actor  | TEXT    |
 
-**Director Table**
+### Director Table
 
-| Columns       | Type    |
+| Column        | Type    |
 | ------------- | ------- |
 | director_id   | INTEGER |
 | director_name | TEXT    |
 
-### API 1
+---
 
-#### Path: `/movies/`
+# API Documentation
 
-#### Method: `GET`
+## API 1
 
-#### Description:
+**Path:** `/movies/`
 
-Returns a list of all movie names in the movie table
+**Method:** `GET`
 
-#### Response
+**Description:**
 
-```
+Returns a list of all movie names in the movie table.
+
+### Response
+
+```json
 [
   {
-    movieName: "Captain America: The First Avenger",
+    "movieName": "Captain America: The First Avenger"
   },
-
-  ...
+  {
+    "movieName": "Jurassic Park"
+  }
 ]
 ```
 
-### API 2
+---
 
-#### Path: `/movies/`
+## API 2
 
-#### Method: `POST`
+**Path:** `/movies/`
 
-#### Description:
+**Method:** `POST`
 
-Creates a new movie in the movie table. `movie_id` is auto-incremented
+**Description:**
 
-#### Request
+Creates a new movie in the movie table. The `movie_id` is auto-generated.
 
-```
+### Request
+
+```json
 {
   "directorId": 6,
   "movieName": "Jurassic Park",
@@ -62,46 +76,56 @@ Creates a new movie in the movie table. `movie_id` is auto-incremented
 }
 ```
 
-#### Response
+### Response
 
-```
+```text
 Movie Successfully Added
 ```
 
-### API 3
+---
 
-#### Path: `/movies/:movieId/`
+## API 3
 
-#### Method: `GET`
+**Path:** `/movies/:movieId/`
 
-#### Description:
+**Method:** `GET`
 
-Returns a movie based on the movie ID
+**Description:**
 
-#### Response
+Returns a movie based on the movie ID.
 
+### Sample Request
+
+```text
+GET /movies/12/
 ```
+
+### Response
+
+```json
 {
-  movieId: 12,
-  directorId: 3,
-  movieName: "The Lord of the Rings",
-  leadActor: "Elijah Wood",
+  "movieId": 12,
+  "directorId": 3,
+  "movieName": "The Lord of the Rings",
+  "leadActor": "Elijah Wood"
 }
 ```
 
-### API 4
+---
 
-#### Path: `/movies/:movieId/`
+## API 4
 
-#### Method: `PUT`
+**Path:** `/movies/:movieId/`
 
-#### Description:
+**Method:** `PUT`
 
-Updates the details of a movie in the movie table based on the movie ID
+**Description:**
 
-#### Request
+Updates the details of a movie based on the movie ID.
 
-```
+### Request
+
+```json
 {
   "directorId": 24,
   "movieName": "Thor",
@@ -109,78 +133,145 @@ Updates the details of a movie in the movie table based on the movie ID
 }
 ```
 
-#### Response
+### Response
 
-```
+```text
 Movie Details Updated
-
 ```
 
-### API 5
+---
 
-#### Path: `/movies/:movieId/`
+## API 5
 
-#### Method: `DELETE`
+**Path:** `/movies/:movieId/`
 
-#### Description:
+**Method:** `DELETE`
 
-Deletes a movie from the movie table based on the movie ID
+**Description:**
 
-#### Response
+Deletes a movie from the movie table based on the movie ID.
 
+### Sample Request
+
+```text
+DELETE /movies/12/
 ```
+
+### Response
+
+```text
 Movie Removed
 ```
 
-### API 6
+---
 
-#### Path: `/directors/`
+## API 6
 
-#### Method: `GET`
+**Path:** `/directors/`
 
-#### Description:
+**Method:** `GET`
 
-Returns a list of all directors in the director table
+**Description:**
 
-#### Response
+Returns a list of all directors in the director table.
 
-```
+### Response
+
+```json
 [
   {
-    directorId: 1,
-    directorName: "Joe Johnston",
+    "directorId": 1,
+    "directorName": "Joe Johnston"
   },
-
-  ...
+  {
+    "directorId": 2,
+    "directorName": "Anthony Russo"
+  }
 ]
 ```
 
-### API 7
+---
 
-#### Path: `/directors/:directorId/movies/`
+## API 7
 
-#### Method: `GET`
+**Path:** `/directors/:directorId/movies/`
 
-#### Description:
+**Method:** `GET`
 
-Returns a list of all movie names directed by a specific director
+**Description:**
 
-#### Response
+Returns a list of all movie names directed by a specific director.
 
+### Sample Request
+
+```text
+GET /directors/1/movies/
 ```
+
+### Response
+
+```json
 [
   {
-    movieName: "Captain Marvel",
+    "movieName": "Captain Marvel"
   },
-
-  ...
+  {
+    "movieName": "Captain America: The First Avenger"
+  }
 ]
 ```
 
-<br/>
+---
 
-Use `npm install` to install the packages.
+# Project Structure
 
-**Export the express instance using the default export syntax.**
+```text
+.
+├── app.js
+├── app.http
+├── moviesData.db
+├── package.json
+├── package-lock.json
+└── README.md
+```
 
-**Use Common JS module syntax.**
+---
+
+# Installation
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the application:
+
+```bash
+npm start
+```
+
+The server starts at:
+
+```text
+http://localhost:3000/
+```
+
+---
+
+# Learning Outcomes
+
+* Developed RESTful APIs using Express.js
+* Performed CRUD operations with SQLite
+* Worked with relational database tables
+* Implemented route parameters and request body handling
+* Executed SQL queries (`SELECT`, `INSERT`, `UPDATE`, `DELETE`)
+* Built APIs to retrieve related data using foreign-key relationships
+
+---
+
+
+
+# Author
+
+**Divyanshu Singh**
