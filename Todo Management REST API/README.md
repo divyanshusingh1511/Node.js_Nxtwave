@@ -48,12 +48,6 @@ A backend REST API built using **Node.js**, **Express.js**, and **SQLite** to ma
 
 ## Getting Started
 
-### Clone the repository
-
-```bash
-git clone <repository-url>
-cd <repository-folder>
-```
 
 ### Install dependencies
 
