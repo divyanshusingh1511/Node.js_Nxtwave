@@ -1,54 +1,73 @@
-# Cricket Team
+# Cricket Team Management REST API
 
-Given two files `app.js` and a database file `cricketTeam.db` consisting a table `cricket_team`.
+A backend REST API built using **Node.js**, **Express.js**, and **SQLite** to manage a cricket team's player information. The application performs CRUD operations on player records stored in a SQLite database.
 
-Write APIs to perform operations on the table `cricket_team` containing the following columns,
+## Tech Stack
 
-| Columns       | Type    |
+* Node.js
+* Express.js
+* SQLite
+* JavaScript
+
+## Database Schema
+
+### Cricket Team Table
+
+| Column        | Type    |
 | ------------- | ------- |
 | player_id     | INTEGER |
 | player_name   | TEXT    |
 | jersey_number | INTEGER |
 | role          | TEXT    |
 
-### API 1
+---
 
-#### Path: `/players/`
+# API Documentation
 
-#### Method: `GET`
+## API 1
 
-#### Description:
+**Path:** `/players/`
 
-Returns a list of all players in the team
+**Method:** `GET`
 
-#### Response
+**Description:**
 
-```
+Returns a list of all players in the cricket team.
+
+### Response
+
+```json
 [
   {
-    playerId: 1,
-    playerName: "Lakshman",
-    jerseyNumber: 5,
-    role: "All-rounder"
+    "playerId": 1,
+    "playerName": "Lakshman",
+    "jerseyNumber": 5,
+    "role": "All-rounder"
   },
-
-  ...
+  {
+    "playerId": 2,
+    "playerName": "Rahul",
+    "jerseyNumber": 18,
+    "role": "Batsman"
+  }
 ]
 ```
 
-### API 2
+---
 
-#### Path: `/players/`
+## API 2
 
-#### Method: `POST`
+**Path:** `/players/`
 
-#### Description:
+**Method:** `POST`
 
-Creates a new player in the team (database). `player_id` is auto-incremented
+**Description:**
 
-#### Request
+Creates a new player in the cricket team. The `player_id` is auto-generated.
 
-```
+### Request
+
+```json
 {
   "playerName": "Vishal",
   "jerseyNumber": 17,
@@ -56,46 +75,56 @@ Creates a new player in the team (database). `player_id` is auto-incremented
 }
 ```
 
-#### Response
+### Response
 
-```
+```text
 Player Added to Team
 ```
 
-### API 3
+---
 
-#### Path: `/players/:playerId/`
+## API 3
 
-#### Method: `GET`
+**Path:** `/players/:playerId/`
 
-#### Description:
+**Method:** `GET`
 
-Returns a player based on a player ID
+**Description:**
 
-#### Response
+Returns the details of a player based on the player ID.
 
+### Sample Request
+
+```text
+GET /players/1/
 ```
+
+### Response
+
+```json
 {
-  playerId: 1,
-  playerName: "Lakshman",
-  jerseyNumber: 5,
-  role: "All-rounder"
+  "playerId": 1,
+  "playerName": "Lakshman",
+  "jerseyNumber": 5,
+  "role": "All-rounder"
 }
 ```
 
-### API 4
+---
 
-#### Path: `/players/:playerId/`
+## API 4
 
-#### Method: `PUT`
+**Path:** `/players/:playerId/`
 
-#### Description:
+**Method:** `PUT`
 
-Updates the details of a player in the team (database) based on the player ID
+**Description:**
 
-#### Request
+Updates the details of a player based on the player ID.
 
-```
+### Request
+
+```json
 {
   "playerName": "Maneesh",
   "jerseyNumber": 54,
@@ -103,33 +132,105 @@ Updates the details of a player in the team (database) based on the player ID
 }
 ```
 
-#### Response
+### Response
 
-```
+```text
 Player Details Updated
-
 ```
 
-### API 5
+---
 
-#### Path: `/players/:playerId/`
+## API 5
 
-#### Method: `DELETE`
+**Path:** `/players/:playerId/`
 
-#### Description:
+**Method:** `DELETE`
 
-Deletes a player from the team (database) based on the player ID
+**Description:**
 
-#### Response
+Deletes a player from the cricket team based on the player ID.
 
+### Sample Request
+
+```text
+DELETE /players/1/
 ```
+
+### Response
+
+```text
 Player Removed
 ```
 
-<br/>
+---
 
-Use `npm install` to install the packages.
+# Project Structure
 
-**Export the express instance using the default export syntax.**
+```text
+.
+├── app.js
+├── app.http
+├── cricketTeam.db
+├── package.json
+├── package-lock.json
+└── README.md
+```
 
-**Use Common JS module syntax.**
+---
+
+# Installation
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
+cd <repository-folder>
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the application:
+
+```bash
+npm start
+```
+
+The server starts at:
+
+```text
+http://localhost:3000/
+```
+
+---
+
+# Learning Outcomes
+
+* Developed RESTful APIs using Express.js
+* Performed CRUD operations with SQLite
+* Implemented route parameters and request body handling
+* Executed SQL queries (`SELECT`, `INSERT`, `UPDATE`, `DELETE`)
+* Built backend APIs for managing sports team data
+* Followed REST API design principles using Node.js and Express.js
+
+---
+
+# Future Enhancements
+
+* JWT Authentication
+* Input Validation
+* Search and Filtering
+* Pagination Support
+* Docker Containerization
+* AWS Cloud Deployment
+* Swagger API Documentation
+* Unit Testing with Jest
+
+---
+
+# Author
+
+**Divyanshu Singh**
